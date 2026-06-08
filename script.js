@@ -154,9 +154,7 @@ btnConfirmar.addEventListener("click", async (e) => {
         const nombre = input.value.trim();
 
         if (nombre !== "") {
-
             nombres.push(nombre);
-
             lista += "• " + nombre + "%0A";
         }
 
@@ -167,41 +165,35 @@ btnConfirmar.addEventListener("click", async (e) => {
         return;
     }
 
-    try {
-
-        await fetch(URL_SCRIPT, {
-            method: "POST",
-            body: JSON.stringify({
-                invitados: nombres
-            })
-        });
-
-    } catch (error) {
-
-        console.error("ERROR:", error);
-        alert("No se pudo registrar la asistencia.");
-        return;
-
-    }
-
-    /* MENSAJE WHATSAPP */
-
     const mensaje =
         "✨ Hola Valentina ✨%0A%0A" +
         "He escuchado el llamado de las luces del reino y me encantaría acompañarte en esta noche inolvidable. 🏮%0A%0A" +
         "Asistiremos:%0A%0A" +
         lista;
 
-    window.open(
-    "https://wa.me/5491131881109?text=" + mensaje,
-    "_blank"
-    );
+    const whatsappURL =
+        "https://wa.me/5491131881109?text=" + mensaje;
 
-    document.getElementById("invitacion").style.display = "none";
+    // abrir primero
+    window.location.href = whatsappURL;
 
-document
-    .getElementById("pantallaGracias")
-    .style.display = "block";
+    // guardar después
+    fetch(URL_SCRIPT, {
+        method: "POST",
+        body: JSON.stringify({
+            invitados: nombres
+        })
+    }).catch(error => {
+        console.error(error);
+    });
+
+    setTimeout(() => {
+
+        document.getElementById("invitacion").style.display = "none";
+
+        document.getElementById("pantallaGracias").style.display = "block";
+
+    }, 1000);
 
 });
 
@@ -216,4 +208,3 @@ document
     document.getElementById("invitacion").style.display = "block";
 
 });
-
