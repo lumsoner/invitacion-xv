@@ -79,7 +79,7 @@ portada.addEventListener("animationend", () => {
 });
 
 // 📅 12 de Septiembre 2026 - 21:00 hs
-const fechaEvento = new Date(2026, 12, 9, 21, 0, 0).getTime();
+const fechaEvento = new Date(2026, 8, 12, 21, 0, 0).getTime();
 
 function actualizarContador() {
     const ahora = new Date().getTime();
