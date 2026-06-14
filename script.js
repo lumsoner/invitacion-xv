@@ -78,8 +78,8 @@ portada.addEventListener("animationend", () => {
     document.getElementById("invitacion").style.pointerEvents = "auto";
 });
 
-// 📅 11 de julio 2026 - 21:00 hs
-const fechaEvento = new Date(2026, 6, 11, 21, 0, 0).getTime();
+// 📅 12 de Septiembre 2026 - 21:00 hs
+const fechaEvento = new Date(2026, 12, 9, 21, 0, 0).getTime();
 
 function actualizarContador() {
     const ahora = new Date().getTime();
